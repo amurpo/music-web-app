@@ -1,34 +1,20 @@
-variables:
-- name: BuildParameters.mavenPOMFile
-  value: pom.xml
+#java maven azure pipeline
 trigger:
   branches:
     include:
     - master
     - test
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: Test2/Templates-Daniel
+    - repository: variables
+      type: git
+      name: Test2/Templates-Daniel
+
+variables:
+  - template: Variables/variables.yml@variables
 name: $(date:yyyyMMdd)$(rev:.r)
 jobs:
-- job: Job_1
-  displayName: Agent job 1
-  pool:
-    vmImage: windows-2019
-  steps:
-  - checkout: self
-    clean: true
-  - task: Maven@3
-    displayName: Maven pom.xml
-    inputs:
-      mavenPOMFile: $(BuildParameters.mavenPOMFile)
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-    condition: succeededOrFailed()
-    inputs:
-      SourceFolder: $(system.defaultworkingdirectory)
-      Contents: '**/*.jar'
-      TargetFolder: $(build.artifactstagingdirectory)
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: drop'
-    condition: succeededOrFailed()
-    inputs:
-      PathtoPublish: $(build.artifactstagingdirectory)
-...
+  - template: 
