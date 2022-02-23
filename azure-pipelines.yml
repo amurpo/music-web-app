@@ -17,4 +17,4 @@ variables:
   - template: Variables/variables.yml@variables
 name: $(date:yyyyMMdd)$(rev:.r)
 jobs:
-  - template: 
+  - template: Java/java-maven.yml@templates
