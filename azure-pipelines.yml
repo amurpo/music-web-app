@@ -8,10 +8,10 @@ resources:
   repositories:
     - repository: templates
       type: git
-      name: Test2/Templates-Daniel
+      name: Test/Test
     - repository: variables
       type: git
-      name: Test2/Templates-Daniel
+      name: Test2/Test
 
 variables:
   - template: Variables/variables.yml@variables
