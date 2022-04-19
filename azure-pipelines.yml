@@ -11,7 +11,7 @@ resources:
       name: Test/Test
     - repository: variables
       type: git
-      name: Test2/Test
+      name: Test/Test
 
 variables:
   - template: Variables/variables.yml@variables
